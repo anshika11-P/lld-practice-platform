@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>LLD Practice Platform</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f7fb;
+            color: #222;
+        }
+
+        .navbar {
+            background: #111827;
+            padding: 18px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .nav-links a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            width: 85%;
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 80px 20px;
+        }
+
+        .hero h1 {
+            font-size: 44px;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #2563eb;
+            color: white;
+            padding: 12px 22px;
+            border-radius: 7px;
+            text-decoration: none;
+        }
+
+        .btn:hover {
+            opacity: 0.85;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            padding-bottom: 50px;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px #ddd;
+        }
+
+        .card h2 {
+            margin-bottom: 12px;
+        }
+
+        .card p {
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 700px) {
+            .navbar {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar">
+
+        <div class="logo">
+            LLD Practice
+        </div>
+
+        <div class="nav-links">
+
+            <a href="{{ url_for('home') }}">Home</a>
+
+            <a href="{{ url_for('problems') }}">Problems</a>
+
+            <a href="{{ url_for('history') }}">History</a>
+
+            <a href="{{ url_for('learning') }}">Learning</a>
+
+            <a href="{{ url_for('feedback') }}">Feedback</a>
+
+        </div>
+
+    </nav>
+
+    <main class="container">
+
+        <section class="hero">
+
+            <h1>LLD Practice Platform</h1>
+
+            <p>
+                Practice Low-Level Design problems and improve
+                your Object-Oriented Programming skills.
+            </p>
+
+            <a href="{{ url_for('start_practice') }}" class="btn">
+                Start Practice
+            </a>
+
+        </section>
+
+        <section class="features">
+
+            <div class="card">
+
+                <h2>Practice Problems</h2>
+
+                <p>
+                    Solve real-world Low-Level Design problems.
+                </p>
+
+                <a href="{{ url_for('problems') }}" class="btn">
+                    View Problems
+                </a>
+
+            </div>
+
+            <div class="card">
+
+                <h2>Track Progress</h2>
+
+                <p>
+                    Check your completed practice problems.
+                </p>
+
+                <a href="{{ url_for('history') }}" class="btn">
+                    View History
+                </a>
+
+            </div>
+
+            <div class="card">
+
+                <h2>Learn LLD</h2>
+
+                <p>
+                    Learn important LLD and OOP concepts.
+                </p>
+
+                <a href="{{ url_for('learning') }}" class="btn">
+                    Start Learning
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</body>
+
+</html>

@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Feedback - LLD Practice</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f7fb;
+            color: #222;
+            line-height: 1.6;
+        }
+
+        .navbar {
+            background: #111827;
+            padding: 18px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .container {
+            width: 85%;
+            max-width: 1000px;
+            margin: 40px auto;
+        }
+
+        .box {
+            background: white;
+            padding: 35px;
+            border-radius: 12px;
+            box-shadow: 0 2px 12px #ddd;
+        }
+
+        h1 {
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .score-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .score {
+            background: #f8fafc;
+            padding: 20px;
+            text-align: center;
+            border-radius: 10px;
+        }
+
+        .score h3 {
+            font-size: 15px;
+            margin-bottom: 8px;
+        }
+
+        .number {
+            font-size: 28px;
+            font-weight: bold;
+            color: #2563eb;
+        }
+
+        .section {
+            margin-top: 25px;
+            padding: 20px;
+            background: #f8fafc;
+            border-radius: 10px;
+        }
+
+        .section h2 {
+            margin-bottom: 10px;
+        }
+
+        .section p {
+            white-space: pre-line;
+        }
+
+        .solution {
+            background: #111827;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 15px;
+            white-space: pre-wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 25px;
+            margin-right: 10px;
+            padding: 12px 22px;
+            background: #2563eb;
+            color: white;
+            text-decoration: none;
+            border-radius: 7px;
+        }
+
+        .secondary {
+            background: #e5e7eb;
+            color: #222;
+        }
+
+        .empty {
+            text-align: center;
+            padding: 30px;
+        }
+
+        @media (max-width: 700px) {
+
+            .navbar {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .nav-links {
+                justify-content: center;
+            }
+
+            .container {
+                width: 92%;
+            }
+
+            .score-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar">
+
+        <div class="logo">
+            LLD Practice
+        </div>
+
+        <div class="nav-links">
+
+            <a href="{{ url_for('home') }}">Home</a>
+
+            <a href="{{ url_for('problems') }}">Problems</a>
+
+            <a href="{{ url_for('history') }}">History</a>
+
+            <a href="{{ url_for('learning') }}">Learning</a>
+
+            <a href="{{ url_for('feedback') }}">Feedback</a>
+
+        </div>
+
+    </nav>
+
+
+    <main class="container">
+
+        <div class="box">
+
+            {% if submission and feedback %}
+
+                <h1>Design Feedback</h1>
+
+                <p class="subtitle">
+                    Feedback for: {{ submission.problem_title }}
+                </p>
+
+
+                <div class="score-grid">
+
+                    <div class="score">
+                        <h3>Responsibilities</h3>
+                        <div class="number">
+                            {{ feedback.responsibility_score }}/5
+                        </div>
+                    </div>
+
+                    <div class="score">
+                        <h3>Abstraction</h3>
+                        <div class="number">
+                            {{ feedback.abstraction_score }}/5
+                        </div>
+                    </div>
+
+                    <div class="score">
+                        <h3>Relationships</h3>
+                        <div class="number">
+                            {{ feedback.relationship_score }}/5
+                        </div>
+                    </div>
+
+                    <div class="score">
+                        <h3>Extensibility</h3>
+                        <div class="number">
+                            {{ feedback.extensibility_score }}/5
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="section">
+
+                    <h2>What You Did Well</h2>
+
+                    <p>
+                        {{ feedback.strengths }}
+                    </p>
+
+                </div>
+
+
+                <div class="section">
+
+                    <h2>What Could Improve</h2>
+
+                    <p>
+                        {{ feedback.improvements }}
+                    </p>
+
+                </div>
+
+
+                <div class="section">
+
+                    <h2>Recommended Next Steps</h2>
+
+                    <p>
+                        {{ feedback.next_steps }}
+                    </p>
+
+                </div>
+
+
+                <div class="section">
+
+                    <h2>Your Submitted Design</h2>
+
+                    <div class="solution">
+                        {{ submission.solution }}
+                    </div>
+
+                </div>
+
+
+                <a href="{{ url_for('problems') }}" class="btn">
+                    Try Another Problem
+                </a>
+
+                <a href="{{ url_for('history') }}" class="btn secondary">
+                    View History
+                </a>
+
+
+            {% else %}
+
+                <div class="empty">
+
+                    <h1>No Feedback Yet</h1>
+
+                    <p>
+                        Submit an LLD design first to receive feedback.
+                    </p>
+
+                    <a href="{{ url_for('problems') }}" class="btn">
+                        Browse Problems
+                    </a>
+
+                </div>
+
+            {% endif %}
+
+        </div>
+
+    </main>
+
+</body>
+
+</html>

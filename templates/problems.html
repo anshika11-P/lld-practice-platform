@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>LLD Problems - LLD Practice</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f7fb;
+            color: #222;
+            line-height: 1.6;
+        }
+
+        .navbar {
+            background: #111827;
+            padding: 18px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .nav-links a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            width: 85%;
+            max-width: 1100px;
+            margin: 40px auto;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .page-header h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+
+        .page-header p {
+            color: #666;
+        }
+
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 22px;
+        }
+
+        .problem-card {
+            background: white;
+            padding: 28px;
+            border-radius: 12px;
+            box-shadow: 0 2px 12px #ddd;
+        }
+
+        .problem-card h2 {
+            margin-bottom: 12px;
+        }
+
+        .problem-card p {
+            color: #555;
+            margin-bottom: 12px;
+        }
+
+        .tags {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .tag {
+            padding: 6px 12px;
+            border-radius: 20px;
+            background: #eef2ff;
+            color: #3730a3;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .difficulty {
+            background: #ecfdf5;
+            color: #166534;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #2563eb;
+            color: white;
+            padding: 11px 20px;
+            border-radius: 7px;
+            text-decoration: none;
+        }
+
+        .btn:hover {
+            opacity: 0.85;
+        }
+
+        .empty-box {
+            background: white;
+            padding: 40px;
+            text-align: center;
+            border-radius: 12px;
+            box-shadow: 0 2px 12px #ddd;
+        }
+
+        @media (max-width: 700px) {
+
+            .navbar {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .nav-links {
+                justify-content: center;
+            }
+
+            .container {
+                width: 92%;
+            }
+
+            .problem-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .page-header h1 {
+                font-size: 30px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar">
+
+        <div class="logo">
+            LLD Practice
+        </div>
+
+        <div class="nav-links">
+
+            <a href="{{ url_for('home') }}">Home</a>
+
+            <a href="{{ url_for('problems') }}">Problems</a>
+
+            <a href="{{ url_for('history') }}">History</a>
+
+            <a href="{{ url_for('learning') }}">Learning</a>
+
+            <a href="{{ url_for('feedback') }}">Feedback</a>
+
+        </div>
+
+    </nav>
+
+
+    <main class="container">
+
+        <div class="page-header">
+
+            <h1>Choose an LLD Problem</h1>
+
+            <p>
+                Select a problem and start practicing your design skills.
+            </p>
+
+        </div>
+
+
+        {% if problems %}
+
+        <div class="problem-grid">
+
+            {% for problem in problems %}
+
+            <div class="problem-card">
+
+                <h2>
+                    {{ problem.title }}
+                </h2>
+
+                <p>
+                    {{ problem.description }}
+                </p>
+
+
+                <div class="tags">
+
+                    <span class="tag">
+                        {{ problem.category }}
+                    </span>
+
+                    <span class="tag difficulty">
+                        {{ problem.difficulty }}
+                    </span>
+
+                </div>
+
+
+                <a href="{{ url_for('problem', problem_id=problem.id) }}"
+                   class="btn">
+
+                    View Problem
+
+                </a>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+        {% else %}
+
+        <div class="empty-box">
+
+            <h2>No Problems Available</h2>
+
+            <p>
+                There are currently no LLD problems available.
+            </p>
+
+        </div>
+
+        {% endif %}
+
+    </main>
+
+</body>
+
+</html>

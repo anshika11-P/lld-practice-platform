@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>History - LLD Practice</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f7fb;
+            color: #222;
+            line-height: 1.6;
+        }
+
+        .navbar {
+            background: #111827;
+            padding: 18px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .nav-links a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            width: 85%;
+            max-width: 1000px;
+            margin: 40px auto;
+        }
+
+        .page-header {
+            margin-bottom: 30px;
+        }
+
+        .page-header h1 {
+            margin-bottom: 8px;
+        }
+
+        .page-header p {
+            color: #666;
+        }
+
+        .history-list {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .history-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 2px 12px #ddd;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .history-info h2 {
+            margin-bottom: 8px;
+        }
+
+        .history-info p {
+            color: #666;
+            margin: 4px 0;
+        }
+
+        .status {
+            background: #dcfce7;
+            color: #166534;
+            padding: 7px 14px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        .empty-box {
+            background: white;
+            padding: 50px 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 12px #ddd;
+            text-align: center;
+        }
+
+        .empty-box h2 {
+            margin-bottom: 10px;
+        }
+
+        .empty-box p {
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #2563eb;
+            color: white;
+            padding: 12px 22px;
+            border-radius: 7px;
+            text-decoration: none;
+        }
+
+        .btn:hover {
+            opacity: 0.85;
+        }
+
+        @media (max-width: 700px) {
+
+            .navbar {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .nav-links {
+                justify-content: center;
+            }
+
+            .container {
+                width: 92%;
+            }
+
+            .history-card {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .status {
+                align-self: flex-start;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar">
+
+        <div class="logo">
+            LLD Practice
+        </div>
+
+        <div class="nav-links">
+
+            <a href="{{ url_for('home') }}">Home</a>
+
+            <a href="{{ url_for('problems') }}">Problems</a>
+
+            <a href="{{ url_for('history') }}">History</a>
+
+            <a href="{{ url_for('learning') }}">Learning</a>
+
+            <a href="{{ url_for('feedback') }}">Feedback</a>
+
+        </div>
+
+    </nav>
+
+
+    <main class="container">
+
+        <div class="page-header">
+
+            <h1>Practice History</h1>
+
+            <p>
+                Review your previous LLD practice attempts.
+            </p>
+
+        </div>
+
+
+        {% if histories %}
+
+        <div class="history-list">
+
+            {% for history in histories %}
+
+            <div class="history-card">
+
+                <div class="history-info">
+
+                    <h2>
+                        {{ history.problem_title }}
+                    </h2>
+
+                    <p>
+                        <strong>Status:</strong>
+                        {{ history.status }}
+                    </p>
+
+                    <p>
+                        <strong>Completed At:</strong>
+                        {{ history.completed_at.strftime('%d %B %Y, %I:%M %p') }}
+                    </p>
+
+                </div>
+
+                <div class="status">
+                    {{ history.status }}
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+        {% else %}
+
+        <div class="empty-box">
+
+            <h2>No Practice History Yet</h2>
+
+            <p>
+                Start solving an LLD problem to create your first attempt.
+            </p>
+
+            <a href="{{ url_for('problems') }}" class="btn">
+                Browse Problems
+            </a>
+
+        </div>
+
+        {% endif %}
+
+    </main>
+
+</body>
+
+</html>

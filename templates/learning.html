@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Learning - LLD Practice</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f7fb;
+            color: #222;
+            line-height: 1.6;
+        }
+
+        .navbar {
+            background: #111827;
+            padding: 18px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .nav-links a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            width: 85%;
+            max-width: 1000px;
+            margin: 40px auto;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .page-header h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+
+        .page-header p {
+            color: #666;
+            font-size: 17px;
+        }
+
+        .learning-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .learning-card {
+            background: white;
+            padding: 28px;
+            border-radius: 12px;
+            box-shadow: 0 2px 12px #ddd;
+        }
+
+        .learning-card h2 {
+            margin-bottom: 12px;
+        }
+
+        .learning-card p {
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        .learning-card ul {
+            padding-left: 20px;
+        }
+
+        .learning-card li {
+            margin-bottom: 8px;
+        }
+
+        .tip-box {
+            margin-top: 30px;
+            background: #eff6ff;
+            padding: 25px;
+            border-left: 4px solid #2563eb;
+            border-radius: 8px;
+        }
+
+        .tip-box h2 {
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 700px) {
+
+            .navbar {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .nav-links {
+                justify-content: center;
+            }
+
+            .container {
+                width: 92%;
+            }
+
+            .learning-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .page-header h1 {
+                font-size: 30px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar">
+
+        <div class="logo">
+            LLD Practice
+        </div>
+
+        <div class="nav-links">
+
+            <a href="{{ url_for('home') }}">Home</a>
+
+            <a href="{{ url_for('problems') }}">Problems</a>
+
+            <a href="{{ url_for('history') }}">History</a>
+
+            <a href="{{ url_for('learning') }}">Learning</a>
+
+            <a href="{{ url_for('feedback') }}">Feedback</a>
+
+        </div>
+
+    </nav>
+
+
+    <main class="container">
+
+        <div class="page-header">
+
+            <h1>Learn LLD</h1>
+
+            <p>
+                Learn the basics of Low-Level Design step by step.
+            </p>
+
+        </div>
+
+
+        <div class="learning-grid">
+
+            <div class="learning-card">
+
+                <h2>1. OOP Concepts</h2>
+
+                <p>
+                    First understand the core concepts of
+                    Object-Oriented Programming.
+                </p>
+
+                <ul>
+                    <li>Class and Object</li>
+                    <li>Encapsulation</li>
+                    <li>Inheritance</li>
+                    <li>Polymorphism</li>
+                    <li>Abstraction</li>
+                </ul>
+
+            </div>
+
+
+            <div class="learning-card">
+
+                <h2>2. Identify Entities</h2>
+
+                <p>
+                    Learn how to identify important entities
+                    from a real-world problem.
+                </p>
+
+                <ul>
+                    <li>Find important objects</li>
+                    <li>Define responsibilities</li>
+                    <li>Identify relationships</li>
+                    <li>Assign properties</li>
+                </ul>
+
+            </div>
+
+
+            <div class="learning-card">
+
+                <h2>3. Class Design</h2>
+
+                <p>
+                    Convert real-world entities into proper
+                    classes and methods.
+                </p>
+
+                <ul>
+                    <li>Create classes</li>
+                    <li>Add attributes</li>
+                    <li>Add methods</li>
+                    <li>Define relationships</li>
+                </ul>
+
+            </div>
+
+
+            <div class="learning-card">
+
+                <h2>4. Practice Problems</h2>
+
+                <p>
+                    Apply your knowledge to common LLD
+                    interview problems.
+                </p>
+
+                <ul>
+                    <li>Parking Lot</li>
+                    <li>Library Management</li>
+                    <li>Food Delivery</li>
+                    <li>Tic Tac Toe</li>
+                    <li>Ride Sharing</li>
+                </ul>
+
+            </div>
+
+        </div>
+
+
+        <div class="tip-box">
+
+            <h2>💡 LLD Tip</h2>
+
+            <p>
+                Don't start coding immediately.
+                First identify the entities, their responsibilities,
+                and how they are connected.
+            </p>
+
+        </div>
+
+    </main>
+
+</body>
+
+</html>
